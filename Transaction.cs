@@ -11,5 +11,10 @@ namespace BSA18_hw2_Dushkevych
         private DateTime dateTime;
         private int carId;
         private double chargedAmount;
+
+        public static void ShowHistory()
+        {
+
+        }
     }
 }

@@ -6,12 +6,20 @@ using System.Threading.Tasks;
 
 namespace BSA18_hw2_Dushkevych
 {
-    public class Parking
+    public sealed class Parking
     {
-        private List<Car> cars = new List<Car>();
-        private List<Transaction> transactions = new List<Transaction>();
-        private double balance = 0.0;
+        private static readonly Parking parking = new Parking();
+        private List<Car> cars;
+        private List<Transaction> transactions;
+        private double balance;
 
+        public static Parking ParkingInstance
+        {
+            get
+            {
+                return parking;
+            }
+        }
         public List<Car> Cars
         {
             get
@@ -32,6 +40,28 @@ namespace BSA18_hw2_Dushkevych
             {
                 return balance;
             }
+        }
+
+        private Parking()
+        {
+            cars = new List<Car>();
+            transactions = new List<Transaction>();
+            balance = 0.0;
+        }
+
+        public static void ShowRecentTransactionHistory()
+        {
+
+        }
+
+        public static void ShowTotalIncome()
+        {
+
+        }
+
+        public static void ShowVacantSpots()
+        {
+
         }
     }
 }

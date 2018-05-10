@@ -13,5 +13,25 @@ namespace BSA18_hw2_Dushkevych
         private int id;
         private double balance;
         private CarType carType;
+
+        public static void AddCar()
+        {
+            
+        }
+
+        public static void RemoveCar()
+        {
+
+        }
+
+        public static void LoadCarBalance()
+        {
+
+        }
+
+        public static void ChargeCarParkingFee()
+        {
+
+        }
     }
 }
