@@ -12,9 +12,16 @@ namespace BSA18_hw2_Dushkevych
         private int carId;
         private double chargedAmount;
 
-        public static void ShowHistory()
+        public Transaction(int carIdArg, double chargedAmountArg)
         {
+            dateTime = DateTime.Now;
+            carId = carIdArg;
+            chargedAmount = chargedAmountArg;
+        }
 
+        public override string ToString()
+        {
+            return "Time of transaction: " + dateTime + "   CarId charged: " + carId + "  ChargedAmount : " + chargedAmount;
         }
     }
 }

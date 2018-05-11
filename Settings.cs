@@ -30,7 +30,7 @@ namespace BSA18_hw2_Dushkevych
         }
         public static int ParkingSpace {
             get {
-                return 15;
+                return 10;
             }
         }
         public static float Fine {

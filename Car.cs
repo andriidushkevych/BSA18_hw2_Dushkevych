@@ -10,13 +10,21 @@ namespace BSA18_hw2_Dushkevych
 
     public class Car
     {
+        private static int idCounter = 1;
         private int id;
         private double balance;
         private CarType carType;
 
-        public static void AddCar()
+        public int Id { get { return id; } }
+        public double Balance { get { return balance; } }
+        public CarType CarType { get { return carType; } }
+
+        public Car(CarType carTypeArg, double initialBalance)
         {
-            
+            id = idCounter;
+            balance = initialBalance;
+            carType = carTypeArg;
+            idCounter++;
         }
 
         public static void RemoveCar()
@@ -24,14 +32,25 @@ namespace BSA18_hw2_Dushkevych
 
         }
 
-        public static void LoadCarBalance()
+        public void LoadCarBalance(double amount)
         {
-
+            balance += amount;
         }
 
-        public static void ChargeCarParkingFee()
+        public Transaction ChargeCarParkingFee()
         {
+            double amountToCharge = (double)Settings.ParkingPrice[carType];
+            if(amountToCharge > balance)
+            {
+                amountToCharge *= Settings.Fine;
+            }
+            balance -= amountToCharge;
+            return new Transaction(id, amountToCharge);
+        }
 
+        public override string ToString()
+        {
+            return "ID: " + id + "   Car type: " + carType + "  Balance: " + balance;
         }
     }
 }

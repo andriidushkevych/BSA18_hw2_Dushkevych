@@ -10,8 +10,16 @@ namespace BSA18_hw2_Dushkevych
     {
         public void MainMenu()
         {
-            int menuChoice = ShowMenu();
-            ProcessMenuChoice(menuChoice);
+            int menuChoice = 0;
+            do
+            {
+                menuChoice = ShowMenu();
+                if(menuChoice != 0)
+                {
+                    ProcessMenuChoice(menuChoice);
+                }
+            } while (menuChoice != 0);
+            
         }
 
         private int ShowMenu()
@@ -20,7 +28,7 @@ namespace BSA18_hw2_Dushkevych
             Console.WriteLine("Parking menu:");
             Console.WriteLine("1. Add/Remove car.");
             Console.WriteLine("2. Load car balance.");
-            Console.WriteLine("3. Charge fee for car parking.");
+            Console.WriteLine("3. Show car list.");
             Console.WriteLine("4. Show recent transaction history(1 minute).");
             Console.WriteLine("5. Total parking income.");
             Console.WriteLine("6. Parking vacant spots.");
@@ -37,40 +45,43 @@ namespace BSA18_hw2_Dushkevych
             switch(menuChoice)
             {
                 case 1:
+                    Console.WriteLine();
                     Console.WriteLine("Please choose:");
                     Console.WriteLine("1. Add car.\n2. Remove car.");
                     int addRemoveFlag = Convert.ToInt32(Console.ReadLine());
                     if(addRemoveFlag == 1)
                     {
-                        Car.AddCar();
+                        Parking.ParkingInstance.AddCar();
+                        Parking.ParkingInstance.ShowCarsList();
                     } else if (addRemoveFlag == 2)
                     {
-                        Car.RemoveCar();
+                        Parking.ParkingInstance.RemoveCar();
+                        Parking.ParkingInstance.ShowCarsList();
                     }
                     break;
                 case 2:
                     Console.WriteLine("Load car balance:");
-                    Car.LoadCarBalance();
+                    Parking.ParkingInstance.LoadCarBalance();
                     break;
                 case 3:
-                    Console.WriteLine("Charge fee for car parking:");
-                    Car.ChargeCarParkingFee();
+                    Console.WriteLine("Show car list:");
+                    Parking.ParkingInstance.ShowCarsList();
                     break;
                 case 4:
                     Console.WriteLine("Show recent transaction history:");
-                    Parking.ShowRecentTransactionHistory();
+                    Parking.ParkingInstance.ShowRecentTransactionHistory();
                     break;
                 case 5:
                     Console.WriteLine("Total parking income:");
-                    Parking.ShowTotalIncome();
+                    Parking.ParkingInstance.ShowTotalIncome();
                     break;
                 case 6:
                     Console.WriteLine("Parking vacant spots:");
-                    Parking.ShowVacantSpots();
+                    Parking.ParkingInstance.ShowVacantSpots();
                     break;
                 case 7:
-                    Console.WriteLine("Total parking income:");
-                    Transaction.ShowHistory();
+                    Console.WriteLine("Transaction history: ");
+                    Parking.ParkingInstance.ShowTransactionsHistory();
                     break;
             }            
         }
