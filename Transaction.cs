@@ -12,6 +12,10 @@ namespace BSA18_hw2_Dushkevych
         private int carId;
         private double chargedAmount;
 
+        public DateTime TransactionDateTime { get { return dateTime; } }
+        public int CarId { get { return carId; } }
+        public double ChargedAmount { get { return chargedAmount; } }
+
         public Transaction(int carIdArg, double chargedAmountArg)
         {
             dateTime = DateTime.Now;

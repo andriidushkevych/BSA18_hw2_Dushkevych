@@ -16,27 +16,9 @@ namespace BSA18_hw2_Dushkevych
             { CarType.Motorcycle, 1 }
         };
 
-        public static int Timeout {
-            get {
-                return 3;
-            }
-        }
-        public static Dictionary<CarType, int> ParkingPrice
-        {
-            get
-            {
-                return parkingPrice;
-            }
-        }
-        public static int ParkingSpace {
-            get {
-                return 10;
-            }
-        }
-        public static float Fine {
-            get {
-                return 1.5f;
-            }
-        }
+        public static int Timeout { get { return 3; } }
+        public static Dictionary<CarType, int> ParkingPrice { get { return parkingPrice; } }
+        public static int ParkingSpace { get { return 10; } }
+        public static float Fine { get { return 1.5f; } }
     }
 }

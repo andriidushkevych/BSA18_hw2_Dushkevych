@@ -27,11 +27,6 @@ namespace BSA18_hw2_Dushkevych
             idCounter++;
         }
 
-        public static void RemoveCar()
-        {
-
-        }
-
         public void LoadCarBalance(double amount)
         {
             balance += amount;

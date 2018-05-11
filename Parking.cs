@@ -10,46 +10,19 @@ namespace BSA18_hw2_Dushkevych
         private static readonly Parking parking = new Parking();
         private List<Car> cars;
         private List<Transaction> transactions;
-        private double balance;
+        private double parkingBalance;
 
-        public static Parking ParkingInstance
-        {
-            get
-            {
-                return parking;
-            }
-        }
-        public List<Car> Cars
-        {
-            get
-            {
-                return cars;
-            }
-        }
-        public List<Transaction> Transactions
-        {
-            get
-            {
-                return transactions;
-            }
-        }
-        public double Balance
-        {
-            get
-            {
-                return balance;
-            }
-            private set
-            {
-                this.balance = value;
-            }
-        }
+        public static Parking ParkingInstance { get { return parking; } }
+
+        public List<Car> Cars { get { return cars; } }
+        public List<Transaction> Transactions { get { return transactions; } }
+        public double Balance { get { return parkingBalance; } }
 
         private Parking()
         {
             cars = new List<Car>();
             transactions = new List<Transaction>();
-            balance = 0.0;
+            parkingBalance = 0.0;
             Timer aTimer = new Timer(Settings.Timeout * 1000); //from https://msdn.microsoft.com/en-us/library/system.timers.timer(v=vs.110).aspx#Examples
             aTimer.Elapsed += ChargeParkingFee;
             aTimer.AutoReset = true;
@@ -64,6 +37,7 @@ namespace BSA18_hw2_Dushkevych
                 {
                     Transaction newTran =  car.ChargeCarParkingFee();
                     transactions.Add(newTran);
+                    parkingBalance += newTran.ChargedAmount;
                 }
             }
         }
@@ -166,12 +140,18 @@ namespace BSA18_hw2_Dushkevych
 
         public void ShowRecentTransactionHistory()
         {
-            
+            foreach (Transaction tran in transactions)
+            {
+                TimeSpan diff = DateTime.Now.Subtract(tran.TransactionDateTime);
+                if (diff.Minutes < 1) {
+                    Console.WriteLine(tran);
+                }                
+            }
         }
 
         public void ShowTotalIncome()
         {
-
+            Console.WriteLine("Total parking income at this moment is {0}", parkingBalance);
         }
 
         public void ShowVacantSpots()
